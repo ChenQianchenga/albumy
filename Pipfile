@@ -1,13 +1,26 @@
 [[source]]
-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-jinja2 = "*"
 pillow = "*"
+flask-login = "*"
+flask-sqlalchemy = "*"
+flask = "==1.0.2"
+flask-moment = "*"
+flask-dropzone = "*"
+jinja2 = "==2.10"
+flask-mail = "*"
+flask-wtf = "*"
+python-dotenv = "*"
+bootstrap-flask = "*"
+flask-avatars = "*"
+flask-whooshee = "==0.7.0"
 
 [dev-packages]
+faker = "*"
+watchdog = "*"
 
 [requires]
 python_version = "3.8"
