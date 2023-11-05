@@ -14,6 +14,13 @@ from wtforms import ValidationError
 from albumy.models import User
 
 
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember me')
+    submit = SubmitField('Log in')
+
+
 class RegisterForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(1, 30)])
     email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
@@ -34,3 +41,16 @@ class RegisterForm(FlaskForm):
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError('The username is already in use.')
+
+
+class ForgetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
+    submit = SubmitField()
+
+
+class ResetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
+    password = PasswordField('Password', validators=[
+        DataRequired(), Length(8, 128), EqualTo('password2')])
+    password2 = PasswordField('Confirm password', validators=[DataRequired()])
+    submit = SubmitField()
