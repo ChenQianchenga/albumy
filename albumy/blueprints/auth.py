@@ -71,7 +71,7 @@ def register():
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        token = generate_token(user=name, operation=Operations.CONFIRM)
+        token = generate_token(user=user, operation=Operations.CONFIRM)
         send_confirm_email(user=user, token=token)
         flash('Confirm email sent, check your inbox.', 'info')
         return redirect(url_for('.login'))
